@@ -2,9 +2,9 @@ use std::fmt::{self, Display, Formatter};
 use std::marker::PhantomData;
 use std::ptr::NonNull;
 
-struct Node<T> {
-    val: T,
-    next: Option<NonNull<Node<T>>>,
+pub struct Node<T> {
+    pub val: T,
+    pub next: Option<NonNull<Node<T>>>,
     prev: Option<NonNull<Node<T>>>,
 }
 
@@ -20,8 +20,8 @@ impl<T> Node<T> {
 
 pub struct LinkedList<T> {
     length: u32,
-    head: Option<NonNull<Node<T>>>,
-    tail: Option<NonNull<Node<T>>>,
+   pub head: Option<NonNull<Node<T>>>,
+   pub  tail: Option<NonNull<Node<T>>>,
     // Act like we own boxed nodes since we construct and leak them
     marker: PhantomData<Box<Node<T>>>,
 }
@@ -42,6 +42,7 @@ impl<T> LinkedList<T> {
         }
     }
 
+    
     pub fn insert_at_head(&mut self, obj: T) {
         let mut node = Box::new(Node::new(obj));
         node.next = self.head;
@@ -191,6 +192,8 @@ impl<T> LinkedList<T> {
             },
         }
     }
+    
+    
 }
 
 impl<T> Drop for LinkedList<T> {

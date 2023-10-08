@@ -16,6 +16,7 @@ mod treap;
 mod trie;
 mod union_find;
 mod veb_tree;
+mod floyds_algorithm;
 
 pub use self::avl_tree::AVLTree;
 pub use self::b_tree::BTree;
